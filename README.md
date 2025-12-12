@@ -1,19 +1,112 @@
-# wirecode
-wirecode makes vide coding with chat bots easy.
+# Wirecode
 
-A browser extension which detects all code blocks in all websites and show a button on all code block \<code\> like github, ai websites like chat gpt and gemini more... and when the button is pressed it adds all of the codes in the browser extension with options to preview code, rename code, remove code, multiselect, view options, download option, commit to github repo option, auto mode which keeps adding all \<code\> blocks and btw this browser extension will also auto name the codes it wll get the names from the 1st line of all codes because of the system prompt but this will only work with ai so for other times like github it will just the file name already and for other times it will just put a default code based name on the file like if its a python code it will name it 1.py if no other choice, a selecting tool which basically lets me normaly select all code/text then right click and add to list. it also has a option to go back and see where the code was taken from like if i took a code from chat gpt it will redirect me to the link and the exact place the code is on. and history where i can see the full history of all the code ive ever taken with dates and stuff tho not full codes just the links and position and name of that code i can press on that code and it will redirect me to its exact link and position in the page. sorting saves all projects in a folder in the sidepanel like if i got code from chat gpt with auto mode like all code form same link it will automaticlaly be saved in a folder even if not using auto mode, user can create folder inside folders and sort everythiing with multiselect and darg and drop users can even drag and drop whole folders from the browsers to a local folder in the pc, and btw if the extension doesnt see any name in the 1st line of the code it looks around that code like when chat gpt says save this as main.py it will use that as name and if theres not even that it will use the default names. can use the search bar to search for link domains, file names, folder names.
+**Make coding with AI and the web effortless.**
 
+Wirecode is a browser extension that finds `<code>` blocks across websites (GitHub, AI chat UIs like ChatGPT or Gemini, blogs, docs, etc.) and lets you collect, organize, preview, and manage them from a single workspace.
 
-# Features
-auto mode : basically keeps going even without the user pressing the button for each code block.
-directly upload to github with a button.
+---
 
+## Key features
 
-# instructions for users.
-systemprompt for ai : "always mention the code file name in the first line of the code block, always mention REPLACE in the 2nd line if the user has to replace some line of the code with a different code and mention the code below the 2nd line at 3rd line start the code which needs to be removes with REMOVE and end with REMOVE and start the code which is replacing the code with REPLACE and end with REPLACE, always mention CREATE if user has the create a new file on the 2nd line, always mention DELETE if the user needs to delete a file and mention the filename of the file which needs to be deleted on the 1st line even when not using the DELETE command mention the file name on the first line always."  
+* **Inline capture button** — Wirecode injects a small `Add` button next to detected `<code>` blocks. Tap to capture.
+* **Auto Mode** — Automatically captures every code block on pages you visit (configurable per-site or per-domain).
+* **Smart naming** — For AI-generated snippets, Wirecode uses the first line or nearby instructions (e.g., “save as `main.py`”) to auto-name files. For GitHub it uses the repository filename. If no name can be determined, it falls back to safe defaults like `1.py`, `snippet.js`, etc.
+* **Selection capture** — Highlight any code/text and use the right-click menu to add it to Wirecode (works when `<code>` markup is absent).
+* **Workspace & folders** — Saved snippets appear in a side-panel workspace. Create nested folders, multi-select, drag & drop to reorder. Snippets from the same source link can be auto-grouped into the same folder.
+* **Source linking** — Each snippet stores its origin: clicking the source link scrolls the original page to the exact code position.
+* **History** — Lightweight history showing timestamps, source URL, page position, and filename (does not duplicate full code unless explicitly saved).
+* **Preview & edit metadata** — Preview snippets in-place, rename files, add notes or tags, and remove items.
+* **Download & export** — Download single files or entire folders to your local disk; drag a folder from the workspace to a local file explorer to export it as a directory.
+* **GitHub integration** — Commit captured files directly to a repository with a guided flow and commit message support.
+* **Search** — Filter workspace by filename, folder name, or source domain.
+* **Safety rules** — Built-in safeguards to avoid applying REPLACE blocks automatically (see `What Wirecode should NOT do`).
 
-# what the wirecode shld not do
-paste anything in the code file which starts and ends with REPLACE while the REPLACE command.
+---
 
-# UI/UX
-a good clean ui with animations and transitions with theme like blue black grey and purple for dark theme and white black purple blue the sidepanel shows all files currently being sent to vscode and github and options to stop any file the file name and whole list of all other files and buttons like commit to github with a messgae and vs code button and view options and anythign else...
+## How it works (high level)
+
+1. Wirecode scans the DOM for `<code>` elements and recognized code containers.
+2. It places a lightweight inline UI control next to each block.
+3. On capture, Wirecode stores snippet metadata (source URL, scroll position, timestamp, inferred filename) and the snippet text.
+4. Smart naming attempts in this order: explicit filename in code first line → nearby instruction like “save as X” → GitHub filename → fallback default.
+5. Saved items appear in the side-panel workspace for organization and export.
+
+---
+
+## Quick start — user flow
+
+1. Install the extension (Chrome/Firefox builds available). Grant required permissions during setup.
+2. Open a page with code blocks. Use the `Add` button to capture a snippet, or enable Auto Mode to capture automatically.
+3. Open the Wirecode side panel to preview, rename, tag, move to folders, or export.
+4. Use right-click → `Add to Wirecode` to capture arbitrary selected text.
+5. Use the source link on any saved snippet to jump back to the original page and exact position.
+
+---
+
+## Suggested system prompt for AI integrations
+
+```text
+always mention the code file name in the first line of the code block.
+if the user must replace some code, write `REPLACE` on the second line and put the replacement code between `REPLACE` markers.
+if the user must remove a block of code, wrap that block between `REMOVE` markers.
+if the user must create a new file, write `CREATE` on the second line.
+if the user must delete a file, write `DELETE` on the second line and place the filename to delete on the first line.
+always include the target filename on the first line (even when not using `DELETE`).
+```
+
+> **Note:** Wirecode relies on these conventions to auto-name and process AI-generated snippets. The system prompt is a suggestion for AI prompts; Wirecode will still capture raw snippets when AI does not follow the format.
+
+---
+
+## What Wirecode should NOT do
+
+* **Never** automatically apply or paste content that is wrapped with `REPLACE` markers into an existing code file. `REPLACE` blocks are treated as instructions that require explicit user confirmation.
+* Avoid making destructive changes without explicit user consent (DELETE/REMOVE actions must always require manual confirmation).
+
+---
+
+## Privacy & security
+
+* Wirecode stores snippet text and metadata locally by default. Cloud sync (optional) is opt-in.
+* Source URLs and metadata are stored to enable history and source linking. You can delete history and snippets at any time.
+* GitHub commits require explicit OAuth authorization; Wirecode never stores your GitHub password.
+* Do not enable Auto Mode on sensitive sites (banking, health portals, private dashboards) — Wirecode provides per-site toggles.
+
+---
+
+## Permissions required
+
+* Read and modify content on web pages (to detect and inject UI). Scope can be limited to specific domains.
+* Access to local file system via download/drag-and-drop APIs.
+* Optional: GitHub OAuth for committing to repositories.
+
+---
+
+## Installation
+
+* Chrome: install the Chrome Web Store package (or load unpacked in Dev mode).
+* Firefox: install from AMO (or load temporary extension in dev mode).
+
+---
+
+## Contributing
+
+Contributions welcome. Please open issues or pull requests on the Wirecode GitHub repository. See `CONTRIBUTING.md` for coding conventions and the extension release process.
+
+---
+
+## License
+
+MIT License — include LICENSE in the repo.
+
+---
+
+## Roadmap & ideas
+
+* Selective cloud sync with encryption.
+* Plugin system to add custom filename heuristics or post-processing hooks.
+* Collaborative workspaces and snippet sharing.
+
+---
+
+*Created as a README template for the Wirecode browser extension.*
