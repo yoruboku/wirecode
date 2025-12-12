@@ -3,7 +3,7 @@ wirecode makes vide coding with chat bots easy.
 
 A browser extension and vscode extension which will communicate and write code.
 
-basically the browser extension shows button on all #<code> blocks in the website like chat gpt, gemini, grok, claude. when pressed the button sends the code to vscode extension which takes the code file name from the first line of the code then makes the file and pastes the code.
+basically the browser extension shows button on all code blocks in the website like chat gpt, gemini, grok, claude. when pressed the button sends the code to vscode extension which takes the code file name from the first line of the code then makes the file and pastes the code.
 
 # Features
 auto mode : basically keeps going even without the user pressing the button for each code block.
