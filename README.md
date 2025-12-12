@@ -67,7 +67,7 @@ always include the target filename on the first line (even when not using `DELET
 
 ## Privacy & security
 
-* Wirecode stores snippet text and metadata locally by default. Cloud sync (optional) is opt-in.
+* Wirecode stores snippet text and metadata locally by default.
 * Source URLs and metadata are stored to enable history and source linking. You can delete history and snippets at any time.
 * GitHub commits require explicit OAuth authorization; Wirecode never stores your GitHub password.
 * Do not enable Auto Mode on sensitive sites (banking, health portals, private dashboards) — Wirecode provides per-site toggles.
