@@ -97,7 +97,7 @@ Contributions welcome. Please open issues or pull requests on the Wirecode GitHu
 
 ## License
 
-MIT License — include LICENSE in the repo.
+MIT License
 
 ---
 
