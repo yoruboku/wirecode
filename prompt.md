@@ -36,11 +36,3 @@ Wirecode is a browser extension that finds `<code>` in websites AI chat UIs like
 ## commands in the code
 1. the 2nd line of the code is the name of the file if the 1st line end with a file extension of coding languages like (example : .py .js .sh etc.).
 2. auto mode should only take the code which starts with (#* and end with *#) 
-
-## Suggested system prompt for AI integrations
-
-```text
-always mention the code file name in the second line of the code block ending with the file extension like .py .js .sh dont put anything after that in the whole 1st line.
-the actual code SHOULD ALWAYS start with (#* and end with *#) but only the actual code not anyting else.
-
-```
