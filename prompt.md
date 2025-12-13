@@ -33,6 +33,6 @@ Wirecode is a browser extension that finds `<code>` in websites AI chat UIs like
 
 ---
 
-## commands in the code
+## IMPORTANT stuff
 1. the 2nd line of the code is the name of the file if the 1st line end with a file extension of coding languages like (example : .py .js .sh etc.).
 2. auto mode should only take the code which starts with (#* and end with *#) 
